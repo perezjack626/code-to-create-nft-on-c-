@@ -1,0 +1,22 @@
+npm install -g truffle
+truffle init
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract SimpleNFT is ERC721Enumerable, Ownable {
+    uint256 private _tokenIdCounter;
+
+    constructor() ERC721("SimpleNFT", "SNFT") {
+        _tokenIdCounter = 1;
+    }
+
+    function mint(address to) public onlyOwner {
+        _safeMint(to, _tokenIdCounter);
+        _tokenIdCounter++;
+    }
+}
+npm install @openzeppelin/contracts
+truffle migrate
